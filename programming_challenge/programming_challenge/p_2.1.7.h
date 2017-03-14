@@ -8,8 +8,8 @@
 using namespace std;
 
 vector<int> a(8);
-const int d[2] = {  4,-4 };
-
+const int d[4] = {  4,-4,1,-1 };
+map<int, int> dp;
 //void solve(){
 //	int id = -1;
 //	for (int i = 0; i < a.size(); ++i){
@@ -66,115 +66,127 @@ const int d[2] = {  4,-4 };
 //		}
 //	}
 //}
+int m_cprs(){
+	int num = 0;
+	for (int i = 0; i < 8; ++i){
+		num = num * 10 + a[i];
+	}
+	return num;
+}
+void m_dcprs(int num){
+	for (int i = 7; i >= 0; --i){
+		a[i] = num % 10;
+		num /= 10;
+	}
+}
 
-
+//void solve(){
+//	queue<int> q1;
+//	queue<int> q2;
+//	set<int> s;
+//
+//	q1.push(m_cprs());
+//	q2.push(0);
+//	s.insert(m_cprs());
+//
+//	while (!q1.empty()){
+//		m_dcprs(q1.front()); q1.pop();
+//		int p2 = q2.front(); q2.pop();
+//
+//		//if (p2 == 28){
+//		//	for (int i = 0; i < 8; ++i){
+//		//		cout << p1[i] << " ";
+//		//		if (i % 4 == 3)
+//		//			cout << endl;
+//		//	}
+//		//	cout << p2 << endl;
+//		//}
+//
+//		bool stu = true;
+//		for (int i = 0; i < 8; ++i){
+//			if (a[i] != i){
+//				stu = false;
+//				break;
+//			}
+//		}
+//		if (stu){
+//			cout << p2 << endl;
+//			return;
+//		}
+//		int id = -1;
+//		for (int i = 0; i < 8; ++i){
+//			if (a[i] == 0){
+//				id = i;
+//				break;
+//			}
+//		}
+//		if (id == -1)
+//			continue;
+//		int tmpid=-1;
+//		for (int i = 0; i < 4; ++i){
+//			if ((id == 3 && i == 2) || (id == 4) && (i == 3))
+//				continue;
+//			tmpid = id + d[i];
+//			if (tmpid >= 0 && tmpid < 8){
+//				swap(a[tmpid], a[id]);
+//				if (s.count(m_cprs()) == 0){
+//					q1.push(m_cprs());
+//					q2.push(p2 + 1);
+//					s.insert(m_cprs());
+//				}
+//				swap(a[tmpid], a[id]);
+//			}
+//		}
+//	}
+//}
 void solve(){
-	queue<vector<int>> q1;
+	for (int i = 0; i < 8; ++i){
+		a[i] = i;
+	}
+	queue<int> q1;
 	queue<int> q2;
-	set<vector<int>> s;
 
-	q1.push(a);
+	q1.push(m_cprs());
 	q2.push(0);
-	s.insert(a);
+	dp[m_cprs()] = 0;
 
 	while (!q1.empty()){
-		vector<int> p1 = q1.front(); q1.pop();
+		m_dcprs(q1.front()); q1.pop();
 		int p2 = q2.front(); q2.pop();
 
-		//if (p2 == 28){
-		//	for (int i = 0; i < 8; ++i){
-		//		cout << p1[i] << " ";
-		//		if (i % 4 == 3)
-		//			cout << endl;
-		//	}
-		//	cout << p2 << endl;
-		//}
-
-		bool stu = true;
-		for (int i = 0; i < 8; ++i){
-			if (p1[i] != i){
-				stu = false;
-				break;
-			}
-		}
-		if (stu){
-			cout << p2 << endl;
-			return;
-		}
 		int id = -1;
 		for (int i = 0; i < 8; ++i){
-			if (p1[i] == 0){
+			if (a[i] == 0){
 				id = i;
 				break;
 			}
 		}
 		if (id == -1)
 			continue;
-		int tmpid=-1;
-		for (int i = 0; i < 2; ++i){
+		int tmpid = -1;
+		for (int i = 0; i < 4; ++i){
+			if ((id == 3 && i == 2) || (id == 4) && (i == 3))
+				continue;
 			tmpid = id + d[i];
 			if (tmpid >= 0 && tmpid < 8){
-				swap(p1[tmpid], p1[id]);
-				if (s.count(p1) == 0){
-					q1.push(p1);
+				swap(a[tmpid], a[id]);
+				if (dp.count(m_cprs()) == 0){
+					q1.push(m_cprs());
 					q2.push(p2 + 1);
-					s.insert(p1);
+					dp[m_cprs()]=p2+1;
 				}
-				swap(p1[tmpid], p1[id]);
+				swap(a[tmpid], a[id]);
 			}
-		}
-
-
-
-
-		if (id == 0 || id == 4){
-			tmpid = id + 1;
-			swap(p1[tmpid], p1[id]);
-			if (s.count(p1) == 0){
-				q1.push(p1);
-				q2.push(p2 + 1);
-				s.insert(p1);
-			}
-			swap(p1[tmpid], p1[id]);
-		}
-		else if (id == 3 || id == 7){
-			tmpid = id - 1;
-			swap(p1[tmpid], p1[id]);
-			if (s.count(p1) == 0){
-				q1.push(p1);
-				q2.push(p2 + 1);
-				s.insert(p1);
-			}
-			swap(p1[tmpid], p1[id]);
-		}
-		else{
-			tmpid = id - 1;
-			swap(p1[tmpid], p1[id]);
-			if (s.count(p1) == 0){
-				q1.push(p1);
-				q2.push(p2 + 1);
-				s.insert(p1);
-			}
-			swap(p1[tmpid], p1[id]);
-
-			tmpid = id + 1;
-			swap(p1[tmpid], p1[id]);
-			if (s.count(p1) == 0){
-				q1.push(p1);
-				q2.push(p2 + 1);
-				s.insert(p1);
-			}
-			swap(p1[tmpid], p1[id]);
 		}
 	}
 }
 
 
-
 int main(){
+	solve();
 	while (cin >> a[0] >> a[1] >> a[2] >> a[3]
 		>> a[4] >> a[5] >> a[6] >> a[7]){
-		solve();
+		cout << dp[m_cprs()] << endl;
 	}
 	return 0;
 }

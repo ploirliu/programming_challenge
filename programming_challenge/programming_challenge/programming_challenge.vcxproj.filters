@@ -133,25 +133,31 @@
     <ClInclude Include="2.7.4.h">
       <Filter>books</Filter>
     </ClInclude>
+    <ClInclude Include="p_2.1.1.h">
+      <Filter>practice</Filter>
+    </ClInclude>
     <ClInclude Include="p_2.1.2.h">
-      <Filter>Header Files</Filter>
+      <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.3.h">
-      <Filter>Header Files</Filter>
+      <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.1.h">
-      <Filter>Header Files</Filter>
+      <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.5.h">
-      <Filter>Header Files</Filter>
+      <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.6.h">
-      <Filter>Header Files</Filter>
+      <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.7.h">
+      <Filter>practice</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.1.8.h">
+      <Filter>practice</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.1.9.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
