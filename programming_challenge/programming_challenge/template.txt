@@ -1,0 +1,21 @@
+#include <cstdio>
+#include <queue>
+#include <string>
+#include <set>
+#include <map>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <bitset>
+#include <cmath>
+using namespace std;
+const int INF = 1147483647;
+
+void solve(){
+	
+}
+
+int main(){
+	return 0;
+}

@@ -8,3 +8,6 @@
    b. some times many operation maybe recomputer, think deeper about it when time out
 
  3. poj 2718 smallest difference 
+
+ 4. aoj 0525 Osenbci
+    关于穷竭搜索，想多点，很多问题都与穷竭搜索有关

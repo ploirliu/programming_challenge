@@ -19,10 +19,17 @@
     <Filter Include="practice">
       <UniqueIdentifier>{3203e741-7230-4b0d-af19-e844d42c57eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{89ed48a0-edd5-41aa-90b1-4e746e86ccdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
     <Text Include="some_worth_thinking_twice.txt" />
+    <Text Include="p_2.1.11.txt">
+      <Filter>input</Filter>
+    </Text>
+    <Text Include="template.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -158,6 +165,18 @@
       <Filter>practice</Filter>
     </ClInclude>
     <ClInclude Include="p_2.1.9.h">
+      <Filter>practice</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.1.10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.1.11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.2.1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.2.2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
