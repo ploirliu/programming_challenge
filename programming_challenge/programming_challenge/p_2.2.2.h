@@ -52,6 +52,8 @@ int main(){
 		}
 		int x, y;
 		bool stu = true;
+		if (d < 0)
+			stu = false;
 		for (int i = 0; i < n; ++i){
 			scanf("%d %d", &x, &y);
 			stu = stu&getX(x, y, all[i].first, all[i].second);
