@@ -19,10 +19,10 @@ typedef struct node{
 	int first, second;
 	int id;
 	bool operator<(const struct node &right)const {
-		if (second == right.second){
-			return first>right.first;
+		if (first == right.first){
+			return second<right.second;
 		}
-		return second < right.second;
+		return first < right.first;
 	}
 }P;
 
@@ -141,6 +141,7 @@ void solve(){
 	priority_queue<stall> q;
 	int id = 1;
 	for (int i = 0; i < n; ++i){
+	//	cout << all[i].first << '-' << all[i].second << endl;
 		if (q.size() && q.top().end<all[i].first){
 			stall tmp = q.top(); q.pop();
 			tmp.end = all[i].second;

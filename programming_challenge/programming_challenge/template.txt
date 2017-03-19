@@ -10,8 +10,10 @@
 #include <bitset>
 #include <cmath>
 #include <algorithm>
+#include <functional>
 using namespace std;
 const int INF = 1147483647;
+typedef long long ll;
 
 void solve(){
 	
