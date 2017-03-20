@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "p_2.2.5.h"
+#include "p_2.2.6.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
