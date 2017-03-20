@@ -188,10 +188,13 @@
     <ClInclude Include="P_2.2.5.h">
       <Filter>practice</Filter>
     </ClInclude>
-    <ClInclude Include="p_2.2.6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="p_2.2.7.h">
+      <Filter>practice</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.2.6.h">
+      <Filter>practice</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.2.8.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
