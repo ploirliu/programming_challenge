@@ -19,10 +19,9 @@ const int MAX_N = 100005;
 typedef struct node{
 	int cost, t;
 	bool operator<(const struct node &right)const{
-		if (cost == right.cost){
-			return t > right.t;
-		}
-		return cost < right.cost;
+		double tmp1 = (double)cost / (double)t;
+		double tmp2 = (double)right.cost / (double)right.t;
+		return tmp1 < tmp2;
 	}
 }node;
 
