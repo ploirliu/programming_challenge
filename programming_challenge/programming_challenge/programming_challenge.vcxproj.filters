@@ -212,6 +212,9 @@
     <ClInclude Include="p_2.3.5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="p_2.4.1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
