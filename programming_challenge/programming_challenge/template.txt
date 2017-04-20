@@ -16,6 +16,71 @@ using namespace std;
 const int INF = 1147483647;
 typedef long long ll;
 
+
+class bignum{
+public:
+	bignum(int size = 4):len(size){
+	}
+	~bignum(){
+	}
+	int size()const{
+		return len;
+	}
+	//int get(int id)const{
+	//	return num[id];
+	//}
+	friend ostream &operator<<(ostream &output, const bignum &b){
+		bool stu = false;
+		for (int i = int(b.len - 1); i >= 0; --i){
+			if (stu)
+				printf("%09d", b.num[i]);
+			else if (b.num[i] > 0){
+				printf("%d", b.num[i]);
+				stu = true;
+			}
+		}
+		if (stu == false)
+			printf("0");
+		return output;
+	}
+	const bignum& operator+=(const bignum&right){
+		int add = 0;
+		for (int i = 0; i < len; ++i){
+			int tmp = 0;
+			if (i < right.size()){
+				tmp = right.num[i] + num[i] + add;
+			}
+			else{
+				tmp = num[i] + add;
+			}
+			num[i] = tmp%gap;
+			add = tmp / gap;
+		}
+		return *this;
+	}
+	const bignum& operator=(const bignum&right){
+		for (int i = 0; i <len; ++i){
+			num[i] = right.num[i];
+		}
+		return *this;
+	}
+	void set(int a){
+		for (int i = 0; i <len; ++i){
+			num[i] = a%gap;
+			a /= gap;
+		}
+	}
+private:
+	int  num[4];
+	int len;
+	static const int gap =1000000000;
+};
+
+
+
+
+
+
 void show(){
 
 }
