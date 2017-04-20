@@ -16,11 +16,16 @@ using namespace std;
 const int INF = 1147483647;
 typedef long long ll;
 
+void show(){
+
+}
+
 void solve(){
 	
 }
 
 int main(){
+	freopen("a.in","r",stdin);
     while (scanf("", ) != EOF){
 		
 		solve();
