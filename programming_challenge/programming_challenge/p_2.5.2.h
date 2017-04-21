@@ -35,9 +35,10 @@ bool cmpbigger(const T &a, const T &b){
 
 
 
+
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -91,21 +92,50 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
+const int MAX_P = 40005;
+int t, p;
+int all[MAX_P];
+int stu[MAX_P];
+
+//void show(){
+//	rep(i, 0, p){
+//		cout <<all[i]<< ' ';
+//	}
+//	cout << endl;
+//}
 
 
 
 void solve(){
-	
+	show(all,p);
+	fill(stu,stu+p,INF);
+	//init(stu, -1);
+	int ans = 0;
+	rep(i, 0, p){
+		int* id = upper_bound(stu, stu + p, all[i],cmpless<int>);
+		*id = all[i];
+		//cout << "id-stu" << id - stu << endl;
+		//ans = max(ans, stu[i]);
+		ans = max(ans, id - stu+1);
+		show(stu, p);
+	}
+	pint(ans);
 }
 
 int main(){
-	freopen("a.in","r",stdin);
-    while (scanf("", ) != EOF){
-		
+	freopen("a.in", "r", stdin);
+	//while (scanf("", ) != EOF){
+	gint(t);
+	rep(i, 0, t){
+		gint(p);
+		rep(j, 0, p){
+			gint(all[j]);
+		}
 		solve();
 	}
+	//}
 	return 0;
 }
