@@ -15,26 +15,10 @@
 using namespace std;
 const int INF = 1147483647;
 typedef long long ll;
-#define rep(i,start,end) for(int i=(start);i<(end);++i)
-#define pint(i) printf("%d\n",(i))
-#define gint(i) scanf("%d",&(i))
-#define init(tar,val) memset((tar),(val),sizeof((tar)))
-#define show(tar,len) for(int i=0;i<(len);++i) \
-	cout<<tar[i]<<' ';\
-	cout<<endl;
-
-template<class T>
-bool cmpless(const T &a, const T &b){
-	return a < b;
-}
-
-template<class T>
-bool cmpbigger(const T &a, const T &b){
-	return a > b;
-}
-
-
-
+const int MAX_N = 1005;
+const int MAX_K = 105;
+//ll dp[MAX_K][MAX_N];
+int n, k;
 class bignum{
 public:
 	bignum(int size = 4):len(size){
@@ -95,17 +79,60 @@ private:
 };
 
 
+bignum dp[MAX_K][MAX_N];
+void show(){
+	for (int i = 0; i <= k; ++i){
+		for (int j = 0; j <= n; ++j){
+			cout << dp[i][j] << ' ';
+		}
+		cout << endl;
+	}
+}
 
-
+void init(){
+	for (int i = 0; i < MAX_K; ++i){
+		for (int j = 0; j < MAX_N; ++j){
+			dp[i][j].set(0);
+		}
+	}
+}
 void solve(){
-	
+	init();
+	for (int i = 0; i <= k; ++i){
+		dp[i][0].set(1);
+	}
+	for (int i = 1; i <= k; ++i){
+		for (int j = 1; j <= n; ++j){
+			if (j < i){
+				dp[i][j] = dp[i - 1][j];
+			}
+			else{
+				dp[i][j] += dp[i - 1][j];
+				dp[i][j]+= dp[i][j - i];
+			}
+		}
+		//cout << "i:" << i << endl;
+		//show();
+	}
+	//printf("%lld\n", dp[k][n]);
+	cout << dp[k][n] << endl;
 }
 
 int main(){
-	freopen("a.in","r",stdin);
-    while (scanf("", ) != EOF){
-		
+	//freopen("a.in", "r", stdin);
+	while (scanf("%d %d",&n,&k) != EOF){
 		solve();
 	}
+	//for (int i = 0; i < 100; ++i){
+	//	int a = rand() % INF;
+	//	int b = rand() % INF;
+	//	cout << a <<"+" << b << "="<< a + b << endl;
+	//	bignum b_a, b_b;
+	//	b_a.set(a); b_b.set(b);
+	//
+	//	cout << b_a<<"+"<<b_b;
+	//	b_a += b_b;
+	//	cout <<"="<< b_a << endl;
+	//}
 	return 0;
 }

@@ -23,7 +23,9 @@ const int MAX_N = 105;
 const int MAX_M = 100005;
 int value[MAX_N];
 int num[MAX_N];
-
+int dp_v[20*MAX_N];
+int dp_n[20*MAX_N];
+int dp_len;
 //bool dp[2][MAX_M];
 int dp[MAX_M];
 
@@ -102,6 +104,7 @@ void show(){
 	}
 	cout << endl;
 }
+
 void solve(){
 	memset(dp, -1, sizeof(dp));
 	dp[0] = 0;
@@ -127,13 +130,12 @@ void solve(){
 	printf("%d\n", ans);
 }
 
-
 int main(){
 	//freopen("a.in", "r", stdin);
-	while (scanf("%d %d",&n,&m ) != EOF){
+	while (scanf("%d %d", &n, &m) != EOF){
 		if (m == 0 && n == 0)
 			break;
-		v.clear();
+		//v.clear();
 		for (int i = 0; i < n; ++i){
 			scanf("%d", &value[i]);
 		}

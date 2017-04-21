@@ -215,6 +215,21 @@
     <ClInclude Include="p_2.4.1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="p_2.4.2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.4.3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.5.1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.5.2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="p_2.5.3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
