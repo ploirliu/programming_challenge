@@ -28,7 +28,7 @@ typedef long long ll;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -82,18 +82,41 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
+typedef struct node{
+	int min, max;
+	bool operator<(const node& right)const{
+		if (max == right.max)
+			return min < right.min;
+		return max < right.max;
+	}
+	friend ostream &operator<<(ostream &output, const node &now){
+		output << "min:" << now.min << ",max:" << now.max;
+		return output;
+	}
+}node;
 
-//inline int id(int i){
-//	return i & 1;
-//}
-//
-//inline int last(int i){
-//	return (i - 1) & 1;
-//}
-//
+typedef struct node2{
+	int spf, num;
+	bool operator<(const node2& right)const{
+		return spf > right.spf;
+	}
+	friend ostream &operator<<(ostream &output, const node2& now){
+		output << "spf:" << now.spf << ",num:" << now.num;
+		return output;
+	}
+}node2;
+
+const int MAX_C = 2505;
+const int MAX_L = 2505;
+
+node cow[MAX_C];
+node2 sun[MAX_L];
+int c, l;
+
+
 //void myshow(int i){
 //	rep(j, 0, ){
 //		cout << dp[id(i)][j] << ' ';
@@ -103,13 +126,46 @@ private:
 
 
 void solve(){
-	
+	sort(cow, cow + c);
+	//show(cow, c);
+	priority_queue<int,vector<int>,std::greater<int> > p;
+	rep(i, 0, l){
+		rep(j, 0, sun[i].num)
+			p.push(sun[i].spf);
+	}
+	int out = 0;
+	rep(i, 0, c){
+		while (!p.empty()){
+			int tmp = p.top(); 
+			if (tmp > cow[i].min){
+				if (tmp < cow[i].max){
+					p.pop();
+					++out;
+					break;
+				}
+				else{
+					break;
+				}
+			}
+			else{
+				p.pop();
+			}
+		}
+	}
+	printf("%d\n", out);
 }
 
 int main(){
-	freopen("a.in","r",stdin);
-    while (gint() != EOF){
-		
+	//freopen("a.in", "r", stdin);
+	while (scanf("%d %d",&c,&l) != EOF){
+		rep(i, 0, c){
+			gint(cow[i].min);
+			gint(cow[i].max);
+		}
+		rep(i, 0, l){
+			gint(sun[i].spf);
+			gint(sun[i].num);
+		}
 		solve();
 	}
 	return 0;
