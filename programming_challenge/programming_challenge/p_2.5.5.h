@@ -25,6 +25,7 @@ typedef long long ll;
 
 
 
+
 class bignum{
 public:
 	bignum(int size = 4) :len(size){
@@ -84,11 +85,6 @@ private:
 	static const int gap = 1000000000;
 };
 
-const int MAX_N = 2005;
-int all[MAX_N];// , b[MAX_N], c[MAX_N];
-int stu[MAX_N];
-int dp[2][MAX_N];
-int n;
 
 inline int id(int i){
 	return i & 1;
@@ -98,85 +94,80 @@ inline int last(int i){
 	return (i - 1) & 1;
 }
 
+
+typedef struct node{
+	int a, b;
+}node;
+
+const int MAX_N = 105;
+const int MAX_V = 1005 * 2 * MAX_N;
+
+node all[MAX_N];
+int dp[2][MAX_V];
+int n;
+//void myshow(int i){
+//	rep(j, 0, ){
+//		cout << dp[id(i)][j] << ' ';
+//	}
+//	cout << endl;
+//}
+
+
+inline int id_j(int j){
+	return j + MAX_V/2;
+}
+inline bool id_bool(int j){
+	j += MAX_V/2;
+	if (j<0)
+		return false;
+	if (j >= MAX_V)
+		return false;
+	return true;
+}
 void myshow(int i){
-	rep(j, 0, n)
-		cout << dp[id(i)][j] << ' ';
+	for (int j =0; j <MAX_V; ++j){
+		if (dp[id(i)][j]>-INF)
+			cout << j-MAX_V/2 << ':' << dp[id(i)][j] << ' ';
+	}
 	cout << endl;
 }
-//int cmp(std::function<bool(int,int)> f){
-//	rep(i, 0, n)
-//		stu[i] = all[i];
-//	sort(stu, stu + n, f);
-//	//show(stu, n);
-//	rep(j, 0, n){
-//		dp[id(0)][j] = abs(all[0] - stu[j]);
-//	}
-//	//myshow(0);
-//	rep(i, 1, n){
-//		dp[id(i)][0] = dp[last(i)][0];
-//		rep(j, 1, n){
-//			dp[id(i)][j] = min(dp[last(i)][j], dp[id(i)][j - 1]);
-//		}
-//		rep(j, 0, n)
-//			dp[id(i)][j] = dp[id(i)][j] + abs(all[i] - stu[j]);
-//		//myshow(i);
-//	}
-//	int out = dp[id(n-1)][0];
-//	rep(i, 1, n)
-//		out = min(dp[id(n - 1)][i],out);
-//	return out;
-//}
 
-int cmp1(){
-	rep(i, 0, n)
-		stu[i] = all[i];
-	sort(stu, stu + n);
-	//show(stu, n);
-	rep(j, 0, n){
-		dp[id(0)][j] = abs(all[0] - stu[j]);
+void myinit(){
+	rep(i, 0, 2){
+		rep(j, 0, MAX_V)
+			dp[i][j] = -INF;
 	}
-	//myshow(0);
-	rep(i, 1, n){
-		dp[id(i)][0] = dp[last(i)][0];
-		rep(j, 1, n){
-			dp[id(i)][j] = min(dp[last(i)][j], dp[id(i)][j - 1]);
-		}
-		rep(j, 0, n)
-			dp[id(i)][j] = dp[id(i)][j] + abs(all[i] - stu[j]);
-		//myshow(i);
-	}
-	int out = dp[id(n - 1)][0];
-	rep(i, 1, n)
-		out = min(dp[id(n - 1)][i], out);
-	return out;
 }
 
-
-//int force(int id){
-//	int out = 0;
-//	rep(i, id+1, n){
-//		if (all[i] < all[i - 1]){
-//			rep(j, id, i - 1){
-//				return min()
-//			}
-//		}
-//	}
-//}
-
-
 void solve(){
-	//int ans = min(cmp(std::less<int>()), cmp(std::greater<int>()));
-	//show(all, n);
-	int ans = cmp1();
-	printf("%d\n", ans);
+	myinit();
+	dp[0][id_j(0)] = dp[1][id_j(0)] = 0;
+	rep(i, 0, n){
+		for (int j = MAX_V/2-1; j >-MAX_V/2; --j){
+			dp[id(i)][id_j(j)] = dp[last(i)][id_j(j)];
+			if (id_bool(j - all[i].a) && dp[last(i)][id_j(j - all[i].a)] > -INF){
+				dp[id(i)][id_j(j)] = max(dp[id(i)][id_j(j)], dp[last(i)][id_j(j - all[i].a)] + all[i].b);
+			}
+		}
+		//myshow(i);
+	}
+	int out = 0;
+	rep(j, id_j(0), MAX_V){
+		if (dp[id(n-1)][j] >= 0){
+			out = max(out,  j-MAX_V/2+ dp[id(n-1)][j]);
+		}
+	}
+	printf("%d\n", out);
 }
 
 int main(){
 	//freopen("a.in", "r", stdin);
-	while (gint(n)!= EOF){
+	while (gint(n) != EOF){
 		rep(i, 0, n){
-			gint(all[i]);
-			//b[i] = a[i];
+			gint(all[i].a);
+			gint(all[i].b);
+			//all[i].a += 1000;
+			//all[i].a += 1000;
 		}
 		solve();
 	}
