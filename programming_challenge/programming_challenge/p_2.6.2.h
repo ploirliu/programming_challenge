@@ -15,7 +15,9 @@
 using namespace std;
 const int INF = 1147483647;
 typedef long long ll;
+typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
+#define rrep(i,end,start) for(int i=((end)-1);i>=(start);--i)
 #define pint(i) printf("%d\n",(i))
 #define pint2(i,j) printf("%d %d",(i),(j))
 #define pint3(i,j,k) printf("%d %d %d",(i),(j),(k))
@@ -32,7 +34,7 @@ typedef long long ll;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -86,7 +88,7 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
 
@@ -104,16 +106,98 @@ private:
 //	}
 //	cout << endl;
 //}
+const int MAX_N = 20005;
+const int MAX_C = 100005;
+int n, c, f;
+P all[MAX_C];
+ll a[MAX_C];
+ll b[MAX_C];
 
+void init_a(){
+	init(a, -1);
+	priority_queue<int> p;
+	ll tmp = 0;
+	rep(i, 0, c){
+		if (p.size() < (n/2)){
+			tmp += (ll)all[i].second;
+			p.push(all[i].second);
+		}
+		else{
+			if (tmp <= (ll)f){
+				a[i] = tmp;
+			}
+			if (p.top() > all[i].second){
+				tmp = (ll)tmp - (ll)p.top() + all[i].second;
+				p.pop();
+				p.push(all[i].second);
+			}
+		}
+	}
+}
+
+void init_b(){
+	init(b, -1);
+	priority_queue<int> p;
+	ll tmp = 0;
+	rrep(i, c, 0){
+		if (p.size() < (n / 2)){
+			tmp += (ll)all[i].second;
+			p.push(all[i].second);
+		}
+		else{
+			if (tmp <= (ll)f){
+				b[i] = tmp;
+			}
+			if (p.top() > all[i].second){
+				tmp = (ll)tmp - (ll)p.top() + all[i].second;
+				p.pop();
+				p.push(all[i].second);
+			}	
+		}
+	}
+}
+//#define my_debug 
 
 void solve(){
 	
+	sort(all, all + c);
+	
+	if (n == 1){
+		int ans = -1;
+		rep(i, 0, c){
+			if (all[i].second <= f)
+				ans = all[i].first;
+		}
+		pint(ans);
+		return;
+	}
+
+	init_a();
+	init_b();
+#ifdef my_debug
+	rep(i, 0, c)
+		cout << all[i].first << ':' << all[i].second << ' ';
+	cout << endl;
+	show(a, c);
+	show(b, c);
+#endif 
+	int ans = -1;
+	rep(i, 0, c){
+		if (a[i] >= 0 && b[i] >= 0 && ((ll)a[i] + (ll)b[i] + (ll)all[i].second) <= f){
+			ans = all[i].first;
+		}
+	}
+	pint(ans);
 }
 
 int main(){
-	freopen("a.in","r",stdin);
-    while (gint() != EOF){
-		
+#ifdef my_debug
+	freopen("a.in", "r", stdin);
+#endif
+	while (gint3(n,c,f) != EOF){
+		rep(i, 0, c){
+			gint2(all[i].first, all[i].second);
+		}
 		solve();
 	}
 	return 0;

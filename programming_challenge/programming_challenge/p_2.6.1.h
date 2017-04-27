@@ -17,7 +17,9 @@ const int INF = 1147483647;
 typedef long long ll;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
 #define pint(i) printf("%d\n",(i))
+#define pint2(i,j) printf("%d %d",(i),(j))
 #define gint(i) scanf("%d",&(i))
+#define gint2(i,j) scanf("%d %d",&(i),&(j))
 #define init(tar,val) memset((tar),(val),sizeof((tar)))
 #define show(tar,len) for(int i=0;i<(len);++i) \
 	cout<<tar[i]<<' ';\
@@ -101,7 +103,7 @@ typedef struct node{
 typedef struct node2{
 	int spf, num;
 	bool operator<(const node2& right)const{
-		return spf > right.spf;
+		return spf < right.spf;
 	}
 	friend ostream &operator<<(ostream &output, const node2& now){
 		output << "spf:" << now.spf << ",num:" << now.num;
@@ -126,34 +128,98 @@ int c, l;
 
 
 void solve(){
+	//sort(cow, cow + c);
+	////show(cow, c);
+	//priority_queue<int,vector<int>,std::greater<int> > p;
+	//rep(i, 0, l){
+	//	rep(j, 0, sun[i].num)
+	//		p.push(sun[i].spf);
+	//}
+	//int out = 0;
+	//rep(i, 0, c){
+	//	vector<int> vtmp;
+	//	while (!p.empty()){
+	//		int tmp = p.top();
+	//		//cout << tmp << endl;
+	//		if (tmp >= cow[i].min){
+	//			if (tmp <= cow[i].max){
+	//				p.pop();
+	//				++out;
+	//				break;
+	//			}
+	//			else{
+	//				break;
+	//			}
+	//		}
+	//		else{
+	//			vtmp.push_back(tmp);
+	//			p.pop();
+	//		}
+	//	}
+	//	rep(j, 0, vtmp.size())
+	//		p.push(vtmp[j]);
+	//}
+	//printf("%d\n", out);
+	//sort(sun, sun + l);
+	//show(sun, l);
+	//priority_queue<node> p;
+	//rep(i, 0, c)
+	//	p.push(cow[i]);
+	//int ans = 0;
+	//int cur
 	sort(cow, cow + c);
+	sort(sun, sun + l);
 	//show(cow, c);
-	priority_queue<int,vector<int>,std::greater<int> > p;
-	rep(i, 0, l){
-		rep(j, 0, sun[i].num)
-			p.push(sun[i].spf);
-	}
-	int out = 0;
+	//show(sun, l);
+	int ans = 0;
 	rep(i, 0, c){
-		while (!p.empty()){
-			int tmp = p.top(); 
-			if (tmp > cow[i].min){
-				if (tmp < cow[i].max){
-					p.pop();
-					++out;
-					break;
-				}
-				else{
+		rep(j, 0, l){
+			if (sun[j].num && sun[j].spf <= cow[i].max){
+				if (sun[j].spf >= cow[i].min){
+					++ans;
+					--sun[j].num;
 					break;
 				}
 			}
-			else{
-				p.pop();
+			if(sun[j].spf>cow[i].max){
+				break;
 			}
 		}
 	}
-	printf("%d\n", out);
+	pint(ans);
 }
+
+
+bool mycmp(const node &left, const node &right){
+	if (left.min == right.min)
+		return left.max < right.max;
+	return left.min < right.min;
+}
+
+void solve2(){
+	sort(cow, cow + c,mycmp);
+	sort(sun, sun + l);
+	int cur = 0;
+	priority_queue<int,vector<int>,greater<int> > p;
+	int ans = 0;
+	rep(i, 0, l){
+		while (cur < c && cow[cur].min <= sun[i].spf){
+			p.push(cow[cur].max);
+			++cur;
+		}
+		while (!p.empty() && sun[i].num){
+			int tmp = p.top(); p.pop();
+			//cout << tmp << endl;
+			if (sun[i].spf <= tmp){
+				++ans;
+				--sun[i].num;
+			//	break;
+			}
+		}
+	}
+	pint(ans);
+}
+
 
 int main(){
 	//freopen("a.in", "r", stdin);
@@ -166,7 +232,7 @@ int main(){
 			gint(sun[i].spf);
 			gint(sun[i].num);
 		}
-		solve();
+		solve2();
 	}
 	return 0;
 }
