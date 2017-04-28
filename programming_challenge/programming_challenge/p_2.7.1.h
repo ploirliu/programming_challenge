@@ -33,7 +33,7 @@ typedef pair<int, int> P;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -87,7 +87,7 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
 
@@ -106,20 +106,98 @@ private:
 //	cout << endl;
 //}
 
+const int MAX_N = 1005;
+const int MAX_L = 300005;
 
-#define my_debug
+P all[MAX_N];
+P test[MAX_L];
+int repair[MAX_L];
 
-void solve(){
-	
+int n, d, test_num, repair_num;
+
+int stu[MAX_N];
+int now[MAX_N];
+
+void my_init(){
+	rep(i, 0, n+1){
+		stu[i] = i;
+	}
 }
 
+int find_f(int i){
+	if (stu[i] != i){
+		stu[i] = find_f(stu[i]);
+		return stu[i];
+	}
+	return stu[i];
+}
+
+bool connect(int i, int j){
+	int f_i = find_f(i);
+	int f_j = find_f(j);
+	//cout << i << ':' << f_i << endl;
+	//cout << j << ':' << f_j << endl;
+	if (f_i == f_j){
+		return true;
+	}
+	return false;
+}
+
+void get_connect(int i, int j){
+	int f_i = find_f(i);
+	int f_j = find_f(j);
+	if (f_i != f_j){
+		stu[f_i] = f_j;
+	}
+}
+
+bool dis(int i, int j){
+	int out = (all[i].first - all[j].first)*(all[i].first - all[j].first) + (all[i].second - all[j].second)*(all[i].second - all[j].second);
+	if (out <= (d*d))
+		return true;
+	return false;
+}
+
+
+//#define my_debug
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-    while (gint() != EOF){
-		
-		solve();
+	gint2(n, d);
+	rep(i, 0, n)
+		gint2(all[i+1].first, all[i+1].second);
+	char c;
+	int len = 0;
+	my_init();
+	init(now, -1);
+	scanf("%c", &c);
+	while (scanf("%c", &c) != EOF){
+		if (c == 'O'){
+			int id;
+			gint(id);
+			rep(i, 0, len){
+				if (dis(now[i], id))
+					get_connect(now[i], id);
+			}
+			now[len++] = id;
+		}
+		if (c == 'S'){
+			int id1, id2;
+			gint2(id1, id2);
+			if (connect(id1, id2)){
+				printf("SUCCESS\n");
+			}
+			else{
+				printf("FAIL\n");
+			}
+		}
+#ifdef my_debug
+		cout << c << endl;
+		show(now, len);
+		show(stu, n+1);
+#endif
+		scanf("%c", &c);
 	}
 	return 0;
 }

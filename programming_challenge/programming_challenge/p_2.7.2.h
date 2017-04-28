@@ -33,7 +33,7 @@ typedef pair<int, int> P;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -87,7 +87,7 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
 
@@ -106,20 +106,76 @@ private:
 //	cout << endl;
 //}
 
+//#define my_debug
 
-#define my_debug
+const int MAX_N = 100006;
+int stu[2 * MAX_N];
+int n, m;
+
+int g_f(int i){
+	if (stu[i] != i){
+		stu[i] = g_f(stu[i]);
+	}
+	return stu[i];
+}
+
+bool same(int i, int j){
+	int fi = g_f(i), fj = g_f(j);
+	if (fi == fj)
+		return true;
+	return false;
+}
+
+void con(int i, int j){
+	int fi = g_f(i), fj = g_f(j);
+	if (fi != fj){
+		stu[fi] = fj;
+	}
+}
+
+void myinit(){
+	rep(i, 0, 2*(n + 1))
+		stu[i] = i;
+}
 
 void solve(){
-	
+
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
+	freopen("a.out", "w", stdout);
 #endif
-    while (gint() != EOF){
-		
-		solve();
+	int t;
+	gint(t);
+	rep(i, 0, t){
+		gint2(n, m);
+		myinit();
+		int id1, id2;
+		char c;
+		rep(j, 0, m){
+			scanf("%c", &c);
+			scanf("%c", &c);
+			gint2(id1, id2);
+			if (c == 'A'){
+				if (same(id1, id2) || same(id1 + n, id2 + n))
+					printf("In the same gang.\n");
+				else if (same(id1, id2 + n) || same(id1 + n, id2))
+					printf("In different gangs.\n");
+				else
+					printf("Not sure yet.\n");
+			}
+			if (c == 'D'){
+				con(id1, id2 + n);
+				con(id1 + n, id2);
+			}
+#ifdef my_debug
+			cout << c << ' ' << id1 << ' ' << id2 << endl;
+			show(stu, 2 * (n + 1));
+#endif
+		}
 	}
+	
 	return 0;
 }
