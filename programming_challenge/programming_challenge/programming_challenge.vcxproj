@@ -154,6 +154,7 @@
     <ClInclude Include="p_2.6.2.h" />
     <ClInclude Include="p_2.7.1.h" />
     <ClInclude Include="p_2.7.2.h" />
+    <ClInclude Include="p_2.7.3.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
