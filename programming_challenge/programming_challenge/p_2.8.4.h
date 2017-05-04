@@ -25,8 +25,8 @@ typedef pair<int, int> P;
 #define gint3(i,j,k) scanf("%d %d %d",&(i),&(j),&(k))
 #define init(tar,val) memset((tar),(val),sizeof((tar)))
 #define show(tar,len) for(int i=0;i<(len);++i) \
-	cout << tar[i] << ' '; \
-	cout << endl;
+	cout<<tar[i]<<' ';\
+	cout<<endl;
 
 
 
@@ -108,58 +108,78 @@ private:
 
 
 //#define my_debug
-const int MAX_N = 305;
-int len[MAX_N][MAX_N];
-int n, m;
+int n, m, x;
+const int MAX_N = 1005;
+
+P r[MAX_N][MAX_N];
+int r_num[MAX_N];
+
+
+bool stu[MAX_N];
+int len[MAX_N];
+int len2[MAX_N];
 
 void myinit(){
-	rep(i, 0, MAX_N){
-		rep(j, 0, MAX_N){
-			len[i][j] = (i == j ? 0 : INF);
+	init(r_num, 0);
+}
+
+
+
+void spfa(int id,int *mylen){
+	init(stu, 0);
+	fill(mylen, mylen + n + 1, INF);
+	queue<int> q;
+	mylen[id] = 0;
+	stu[id] = true;
+	q.push(id);
+	while (!q.empty()){
+		int tmp = q.front(); q.pop();
+		stu[tmp] = false;
+		rep(i, 0, r_num[tmp]){
+			P &tmp2 = r[tmp][i];
+			if (mylen[tmp2.first] > mylen[tmp] + tmp2.second){
+				mylen[tmp2.first] = mylen[tmp] + tmp2.second;
+				if (stu[tmp2.first] == false){
+					stu[tmp2.first] = true;
+					q.push(tmp2.first);
+				}
+			}
 		}
 	}
 }
 
 void solve(){
-	rep(k, 1, n + 1){
-		rep(i, 1, n + 1){
-			rep(j, 1, n + 1){
-				len[i][j] = min(len[i][j], len[i][k] + len[k][j]);
-			}
-		}
-	}
-	int out = INF;
+	int out = -1;
+	spfa(x, len2);
 	rep(i, 1, n + 1){
-		int tmp = 0;
-		rep(j, 1, n + 1){
-			if (i != j){
-				tmp += len[i][j];
-			}
+		if (i != x && len2[i]<INF){
+			spfa(i,len);
+			if (len[x] < INF)
+				out = max(out, len[x] + len2[i]);
 		}
-		out = min(out, tmp);
+#ifdef my_debug
+		cout<<endl;
+		show(len2, n + 1);
+		show(len, n + 1);
+		cout << endl;
+#endif
+
 	}
-	//double tmp = (double)0.5+(double)out * 100 / (n - 1);
-	pint(out * 100 / (n-1));
+	pint(out);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-	while (gint2(n,m) != EOF){
+	while (gint3(n,m,x) != EOF){
 		myinit();
+		int tmp1, tmp2, tmp;
 		rep(i, 0, m){
-			int tmp;
-			gint(tmp);
-			int now[MAX_N];
-			rep(j, 0, tmp){
-				gint(now[j]);
-			}
-			rep(j, 0, tmp){
-				rep(k, j + 1, tmp){
-					len[now[j]][now[k]] = len[now[k]][now[j]] = 1;
-				}
-			}
+			gint3(tmp1, tmp2, tmp);
+			r[tmp1][r_num[tmp1]].first = tmp2;
+			r[tmp1][r_num[tmp1]].second = tmp;
+			++r_num[tmp1];
 		}
 		solve();
 	}

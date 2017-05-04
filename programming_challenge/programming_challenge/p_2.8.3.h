@@ -25,8 +25,8 @@ typedef pair<int, int> P;
 #define gint3(i,j,k) scanf("%d %d %d",&(i),&(j),&(k))
 #define init(tar,val) memset((tar),(val),sizeof((tar)))
 #define show(tar,len) for(int i=0;i<(len);++i) \
-	cout << tar[i] << ' '; \
-	cout << endl;
+	cout<<tar[i]<<' ';\
+	cout<<endl;
 
 
 
@@ -73,13 +73,13 @@ public:
 		return *this;
 	}
 	const bignum& operator=(const bignum&right){
-		for (int i = 0; i <len; ++i){
+		for (int i = 0; i < len; ++i){
 			num[i] = right.num[i];
 		}
 		return *this;
 	}
 	void set(int a){
-		for (int i = 0; i <len; ++i){
+		for (int i = 0; i < len; ++i){
 			num[i] = a%gap;
 			a /= gap;
 		}
@@ -107,61 +107,105 @@ private:
 //}
 
 
-//#define my_debug
-const int MAX_N = 305;
-int len[MAX_N][MAX_N];
-int n, m;
+#define my_debug
+const int MAX_N = 505;
+const int MAX_E = 6000;
+const int MAX_W = 205;
+int len[MAX_N];
+int n, m, w;
+int e;
+typedef pair<P, int> ROAD;
+ROAD road[MAX_E];
+P r[MAX_N][MAX_N];
+int r_num[MAX_N];
+int my[MAX_W];
 
-void myinit(){
-	rep(i, 0, MAX_N){
-		rep(j, 0, MAX_N){
-			len[i][j] = (i == j ? 0 : INF);
+bool n_loop(int id){
+	fill(len, len + n + 1, INF);
+	len[id] = 0;
+	rep(i, 1, n + 1){
+		rep(j, 0, e){
+			ROAD &r = road[j];
+			if (len[r.first.second] > len[r.first.first] + r.second){
+				len[r.first.second] = len[r.first.first] + r.second;
+
+				if (i == n)
+					return true;
+			}
 		}
 	}
+	return false;
+}
+
+bool n_loop_spfa(int id){
+	bool stu[MAX_N];
+	int count[MAX_N];
+	init(stu, 0); init(count, 0);
+	fill(len, len + n + 1, INF);
+	queue<int> q;
+	stu[id] = true; count[id] = 1; len[id] = 0; q.push(id);
+	while (!q.empty()){
+		id = q.front(); q.pop();
+		stu[id] = false;
+		if (count[id] > n)
+			return true;
+		rep(i, 0, r_num[id]){
+			P &tmp = r[id][i];
+			if (len[tmp.first] > len[id] + tmp.second){
+				len[tmp.first] = len[id] + tmp.second;
+				if (stu[tmp.first] == false){
+					stu[tmp.first] = true;
+					++count[tmp.first];
+					q.push(tmp.first);
+				}
+			}
+		}
+	}
+	return false;
 }
 
 void solve(){
-	rep(k, 1, n + 1){
-		rep(i, 1, n + 1){
-			rep(j, 1, n + 1){
-				len[i][j] = min(len[i][j], len[i][k] + len[k][j]);
-			}
+	rep(i, 0, w){
+		if (n_loop_spfa(my[i])){
+			printf("YES\n");
+			return;
 		}
 	}
-	int out = INF;
-	rep(i, 1, n + 1){
-		int tmp = 0;
-		rep(j, 1, n + 1){
-			if (i != j){
-				tmp += len[i][j];
-			}
-		}
-		out = min(out, tmp);
-	}
-	//double tmp = (double)0.5+(double)out * 100 / (n - 1);
-	pint(out * 100 / (n-1));
+		printf("NO\n");
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-	while (gint2(n,m) != EOF){
-		myinit();
-		rep(i, 0, m){
-			int tmp;
-			gint(tmp);
-			int now[MAX_N];
-			rep(j, 0, tmp){
-				gint(now[j]);
-			}
-			rep(j, 0, tmp){
-				rep(k, j + 1, tmp){
-					len[now[j]][now[k]] = len[now[k]][now[j]] = 1;
-				}
-			}
+	int t;
+	gint(t);
+	rep(i, 0, t){
+		init(r_num, 0);
+		gint3(n, m, w);
+		int tmp1, tmp2, tmp;
+		int id = 0;
+		rep(j, 0, m){
+			gint3(tmp1, tmp2, tmp);
+			road[id].first.first = tmp1, road[id].first.second = tmp2, road[id].second = tmp;
+			++id;
+			road[id].first.first = tmp2, road[id].first.second = tmp1, road[id].second = tmp;
+			++id;
+			r[tmp1][r_num[tmp1]].first = tmp2; r[tmp1][r_num[tmp1]].second = tmp;
+			++r_num[tmp1];
+			r[tmp2][r_num[tmp2]].first = tmp1; r[tmp2][r_num[tmp2]].second = tmp;
+			++r_num[tmp2];
 		}
+		rep(j, 0, w){
+			gint3(tmp1, tmp2, tmp);
+			road[id].first.first = tmp1, road[id].first.second = tmp2, road[id].second = -tmp;
+			++id;
+			my[j] = tmp2;
+			r[tmp1][r_num[tmp1]].first = tmp2; r[tmp1][r_num[tmp1]].second = -tmp;
+			++r_num[tmp1];
+		}
+		e = id;
 		solve();
 	}
 	return 0;
-}
+	}

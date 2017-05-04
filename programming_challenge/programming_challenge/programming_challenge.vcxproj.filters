@@ -1,279 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="books">
-      <UniqueIdentifier>{7cbf7d7e-c76c-4c28-b1f4-5809f798e976}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="practice">
-      <UniqueIdentifier>{3203e741-7230-4b0d-af19-e844d42c57eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="input">
-      <UniqueIdentifier>{89ed48a0-edd5-41aa-90b1-4e746e86ccdf}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="programming_challenge.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2.1.1.h" />
+    <ClInclude Include="2.1.2.h" />
+    <ClInclude Include="2.1.3.h" />
+    <ClInclude Include="2.1.4.h" />
+    <ClInclude Include="2.1.5.h" />
+    <ClInclude Include="2.1.6.h" />
+    <ClInclude Include="2.2.1.h" />
+    <ClInclude Include="2.2.2.h" />
+    <ClInclude Include="2.2.3.h" />
+    <ClInclude Include="2.2.4.1.h" />
+    <ClInclude Include="2.2.4.2.h" />
+    <ClInclude Include="2.3.1.h" />
+    <ClInclude Include="2.3.2.h" />
+    <ClInclude Include="2.3.3.h" />
+    <ClInclude Include="2.4.1.h" />
+    <ClInclude Include="2.4.3.h" />
+    <ClInclude Include="2.4.4.h" />
+    <ClInclude Include="2.5.2.h" />
+    <ClInclude Include="2.5.3.h" />
+    <ClInclude Include="2.5.4.2.h" />
+    <ClInclude Include="2.5.4.3.h" />
+    <ClInclude Include="2.5.4.4.h" />
+    <ClInclude Include="2.5.4.h" />
+    <ClInclude Include="2.5.5.1.h" />
+    <ClInclude Include="2.5.5.2.h" />
+    <ClInclude Include="2.5.6.1.h" />
+    <ClInclude Include="2.5.6.2.h" />
+    <ClInclude Include="2.5.6.3.h" />
+    <ClInclude Include="2.6.1.h" />
+    <ClInclude Include="2.6.2.h" />
+    <ClInclude Include="2.6.4.h" />
+    <ClInclude Include="2.7.1.h" />
+    <ClInclude Include="2.7.3.h" />
+    <ClInclude Include="2.7.4.h" />
+    <ClInclude Include="p_2.1.1.h" />
+    <ClInclude Include="p_2.1.10.h" />
+    <ClInclude Include="p_2.1.11.h" />
+    <ClInclude Include="p_2.1.2.h" />
+    <ClInclude Include="p_2.1.3.h" />
+    <ClInclude Include="p_2.1.4.h" />
+    <ClInclude Include="p_2.1.5.h" />
+    <ClInclude Include="p_2.1.6.h" />
+    <ClInclude Include="p_2.1.7.h" />
+    <ClInclude Include="p_2.1.8.h" />
+    <ClInclude Include="p_2.1.9.h" />
+    <ClInclude Include="p_2.2.1.h" />
+    <ClInclude Include="p_2.2.2.h" />
+    <ClInclude Include="p_2.2.3.h" />
+    <ClInclude Include="p_2.2.4.h" />
+    <ClInclude Include="P_2.2.5.h" />
+    <ClInclude Include="p_2.2.6.h" />
+    <ClInclude Include="p_2.2.7.h" />
+    <ClInclude Include="p_2.2.8.h" />
+    <ClInclude Include="p_2.3.1.h" />
+    <ClInclude Include="P_2.3.2.h" />
+    <ClInclude Include="p_2.3.3.h" />
+    <ClInclude Include="p_2.3.4.h" />
+    <ClInclude Include="p_2.3.5.h" />
+    <ClInclude Include="p_2.4.1.h" />
+    <ClInclude Include="p_2.4.2.h" />
+    <ClInclude Include="p_2.4.3.h" />
+    <ClInclude Include="p_2.5.1.h" />
+    <ClInclude Include="p_2.5.2.h" />
+    <ClInclude Include="p_2.5.3.h" />
+    <ClInclude Include="p_2.5.4.h" />
+    <ClInclude Include="p_2.5.5.h" />
+    <ClInclude Include="p_2.6.1.h" />
+    <ClInclude Include="p_2.6.2.h" />
+    <ClInclude Include="p_2.7.1.h" />
+    <ClInclude Include="p_2.7.2.h" />
+    <ClInclude Include="p_2.7.3.h" />
+    <ClInclude Include="p_2.8.1.h" />
+    <ClInclude Include="randdata.h" />
+    <ClInclude Include="p_2.8.2.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="p_2.8.3.h" />
+    <ClInclude Include="p_2.8.4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2.7.2.h" />
+    <None Include="a.in" />
+    <None Include="a.out" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="p_2.1.11.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="some_worth_thinking_twice.txt" />
-    <Text Include="p_2.1.11.txt">
-      <Filter>input</Filter>
-    </Text>
     <Text Include="template.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.5.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.1.6.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.2.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.2.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.2.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.2.4.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.2.4.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.3.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.3.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.3.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.4.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.4.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.4.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.4.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.4.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.4.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.5.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.5.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.6.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.7.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.6.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.6.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.6.1.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.6.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.5.6.2.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.7.3.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="2.7.4.h">
-      <Filter>books</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.1.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.2.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.3.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.4.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.5.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.6.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.7.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.8.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.9.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.10.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.1.11.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.1.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.2.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.3.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.4.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="P_2.2.5.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.7.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.6.h">
-      <Filter>practice</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.2.8.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.3.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="P_2.3.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.3.3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.3.4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.3.5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.4.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.4.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.4.3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.5.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.5.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.5.3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.5.4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.5.5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.6.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.6.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.7.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.7.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.7.3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="p_2.8.1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="randdata.h">
-    <ClInclude Include="p_2.8.2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="programming_challenge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="2.7.2.h">
-      <Filter>books</Filter>
-    </None>
-    <None Include="a.out" />
-    <None Include="a.in">
-      <Filter>practice</Filter>
-    </None>
   </ItemGroup>
 </Project>
