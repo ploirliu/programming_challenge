@@ -255,6 +255,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="randdata.h">
+    <ClInclude Include="p_2.8.2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
