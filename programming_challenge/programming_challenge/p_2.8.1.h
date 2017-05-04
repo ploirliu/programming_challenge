@@ -13,7 +13,7 @@
 #include <functional>
 #include <string.h>
 using namespace std;
-const int INF = 1000000000;
+const int INF = 1<<28;
 typedef long long ll;
 typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
@@ -113,8 +113,9 @@ const int MAX_NUM = 15;
 
 int n;
 int len[MAX_NUM][MAX_NUM];
-int stu[MAX_NUM];
-set<int> cache;
+int max_node;
+//int stu[MAX_NUM];
+//set<int> cache;
 void myinit(){
 	rep(i, 0, MAX_NUM)
 		rep(j, 0, MAX_NUM){
@@ -135,37 +136,52 @@ void solve(){
 		}
 	}
 	int out = INF, t = 0;
-	for (int i : cache){
+	//for (int i : cache){
+	//	int tmp = 0;
+	//	for (int j : cache){
+	//		tmp += len[i][j];
+	//	}
+	//	if (tmp && tmp < out){
+	//		out = tmp;
+	//		t = i;
+	//	}
+	//}
+	rep(i, 0, max_node+1){
 		int tmp = 0;
-		for (int j : cache){
-			tmp += len[i][j];
+		rep(j, 0, max_node + 1){
+			if ( len[i][j] < INF)
+				tmp += len[i][j];
 		}
+		//cout << i << ' ' << tmp << endl;
 		if (tmp < out){
 			out = tmp;
 			t = i;
 		}
 	}
-	pint2(t, out);
+	//pint2(t, out);
+	cout << t << ' ' << out << endl;
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-	while (gint(n) != EOF){
+	while (gint(n)){
 		if (n == 0)
 			break;
-		fill(stu, stu + MAX_NUM, INF);
+		//fill(stu, stu + MAX_NUM, INF);
 		myinit();
-		cache.clear();
+		//cache.clear();
 		int tmp1, tmp2;
+		max_node = 0;
 		rep(i, 0, n){
 			gint2(tmp1, tmp2);
 			int tmp;
 			gint(tmp);
 			len[tmp2][tmp1] = len[tmp1][tmp2] = tmp;
-			cache.insert(tmp1);
-			cache.insert(tmp2);
+			//cache.insert(tmp1);
+			//cache.insert(tmp2);
+			max_node = max(max_node, max(tmp1, tmp2));
 		}
 		solve();
 	}
