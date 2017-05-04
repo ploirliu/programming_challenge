@@ -107,7 +107,7 @@ private:
 //}
 
 
-#define my_debug
+//#define my_debug
 const int MAX_N = 505;
 const int MAX_E = 6000;
 const int MAX_W = 205;
