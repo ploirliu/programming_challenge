@@ -83,6 +83,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="p_2.8.3.h" />
     <ClInclude Include="p_2.8.4.h" />
+    <ClInclude Include="p_2.8.5.h" />
+    <ClInclude Include="2.8.6.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2.7.2.h" />
