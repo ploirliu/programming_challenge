@@ -13,7 +13,7 @@
 #include <functional>
 #include <string.h>
 using namespace std;
-const int INF = 1<<28;
+const int INF = 1 << 28;
 typedef long long ll;
 typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
@@ -33,7 +33,7 @@ typedef pair<int, int> P;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -73,13 +73,13 @@ public:
 		return *this;
 	}
 	const bignum& operator=(const bignum&right){
-		for (int i = 0; i <len; ++i){
+		for (int i = 0; i < len; ++i){
 			num[i] = right.num[i];
 		}
 		return *this;
 	}
 	void set(int a){
-		for (int i = 0; i <len; ++i){
+		for (int i = 0; i < len; ++i){
 			num[i] = a%gap;
 			a /= gap;
 		}
@@ -87,7 +87,7 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
 
@@ -106,41 +106,61 @@ private:
 //	cout << endl;
 //}
 
-//int n_stu[MAX_N];
-//void n_init(){
-//	rep(i, 0, n)
-//		n_stu[i] = i;
-//}
-//int n_getf(int id){
-//	if (n_stu[id] != id){
-//		n_stu[id] = n_getf(n_stu[id]);
-//	}
-//	return n_stu[id];
-//}
-//bool n_same(int i, int j){
-//	if (n_getf(i) == n_getf(j))
-//		return true;
-//	return false;
-//}
-//void n_union(int i, int j){
-//	int fi = n_getf(i), fj = n_getf(j);
-//	if (fi != fj){
-//		n_stu[fi] = fj;
-//	}
-//}
 
-#define my_debug
-
+#define my_debu
+const int MAX_N = 105;
+int n;
+typedef pair<int, P> node;
+node len[MAX_N*MAX_N];
+int n_stu[MAX_N];
+void n_init(){
+	rep(i, 0, n)
+		n_stu[i] = i;
+}
+int n_getf(int id){
+	if (n_stu[id] != id){
+		n_stu[id] = n_getf(n_stu[id]);
+	}
+	return n_stu[id];
+}
+bool n_same(int i, int j){
+	if (n_getf(i) == n_getf(j))
+		return true;
+	return false;
+}
+void n_union(int i, int j){
+	int fi = n_getf(i), fj = n_getf(j);
+	if (fi != fj){
+		n_stu[fi] = fj;
+	}
+}
 void solve(){
-	
+	sort(len, len + n*n);
+	n_init();
+	int out = 0;
+	rep(i, 0, n*n){
+		int a = len[i].second.first, b = len[i].second.second;
+		if (a == b)
+			continue;
+		if (n_same(a, b))
+			continue;
+		out += len[i].first;
+		n_union(a, b);
+	}
+	pint(out);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-    while (gint() != EOF){
-		
+	while (gint(n) != EOF){
+		rep(i, 0, n)
+			rep(j, 0, n){
+			gint(len[i*n+j].first);
+			len[i*n + j].second.first = i;
+			len[i*n + j].second.second = j;
+		}
 		solve();
 	}
 	return 0;

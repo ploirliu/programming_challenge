@@ -13,7 +13,7 @@
 #include <functional>
 #include <string.h>
 using namespace std;
-const int INF = 1<<28;
+const int INF = 1 << 28;
 typedef long long ll;
 typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
@@ -33,7 +33,7 @@ typedef pair<int, int> P;
 
 class bignum{
 public:
-	bignum(int size = 4):len(size){
+	bignum(int size = 4) :len(size){
 	}
 	~bignum(){
 	}
@@ -87,7 +87,7 @@ public:
 private:
 	int  num[4];
 	int len;
-	static const int gap =1000000000;
+	static const int gap = 1000000000;
 };
 
 
@@ -129,18 +129,70 @@ private:
 //	}
 //}
 
-#define my_debug
+#define my_debu
+const int MAX_N = 1005;
+const int MAX_M = 20005;
+typedef pair<int, P> node;
+node all[MAX_M];
+int n, m;
 
+int n_stu[MAX_N];
+void n_init(int len){
+	rep(i, 0, len)
+		n_stu[i] = i;
+}
+int n_getf(int id){
+	if (n_stu[id] != id){
+		n_stu[id] = n_getf(n_stu[id]);
+	}
+	return n_stu[id];
+}
+bool n_same(int i, int j){
+	if (n_getf(i) == n_getf(j))
+		return true;
+	return false;
+}
+void n_union(int i, int j){
+	int fi = n_getf(i), fj = n_getf(j);
+	if (fi != fj){
+		n_stu[fi] = fj;
+	}
+}
+
+bool connect(){
+	int f1 = n_getf(1);
+	rep(i, 2, n + 1){
+		int tmp = n_getf(i);
+		if (tmp != f1)
+			return false;
+	}
+	return true;
+}
 void solve(){
-	
+	sort(all, all + m, greater<node>());
+	n_init(n+1);
+	ll out = 0;
+	rep(i, 0, m){
+		int a = all[i].second.first, b = all[i].second.second;
+		if (n_same(a, b))
+			continue;
+		out += (ll)all[i].first;
+		n_union(a, b);
+	}
+	if (connect())
+		cout << out << endl;
+	else
+		cout << "-1" << endl;
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-    while (gint() != EOF){
-		
+	while (gint2(n,m) != EOF){
+		rep(i, 0, m){
+			gint3(all[i].second.first, all[i].second.second, all[i].first);
+		}
 		solve();
 	}
 	return 0;
