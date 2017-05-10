@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "poj_2377.h"
+#include "aoj_2224.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {

@@ -120,6 +120,7 @@
     <ClInclude Include="2.7.4.h" />
     <ClInclude Include="2.8.6.h" />
     <ClInclude Include="aoj_2200.h" />
+    <ClInclude Include="aoj_2224.h" />
     <ClInclude Include="poj_1258.h" />
     <ClInclude Include="poj_1742.h" />
     <ClInclude Include="poj_2377.h" />
