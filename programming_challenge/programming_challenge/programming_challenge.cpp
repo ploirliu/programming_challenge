@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "poj_2395.h"
+#include "puzhuan.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {

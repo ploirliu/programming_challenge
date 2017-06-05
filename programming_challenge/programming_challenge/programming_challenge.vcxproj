@@ -125,6 +125,7 @@
     <ClInclude Include="poj_1742.h" />
     <ClInclude Include="poj_2377.h" />
     <ClInclude Include="poj_2395.h" />
+    <ClInclude Include="puzhuan.h" />
     <ClInclude Include="p_2.1.1.h" />
     <ClInclude Include="p_2.1.10.h" />
     <ClInclude Include="p_2.1.11.h" />
