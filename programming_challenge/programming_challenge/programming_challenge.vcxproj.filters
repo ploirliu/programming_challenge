@@ -100,6 +100,7 @@
     <ClInclude Include="poj_3641.h" />
     <ClInclude Include="test_prime.h" />
     <ClInclude Include="p_1995.h" />
+    <ClInclude Include="puzhuan.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2.7.2.h" />
