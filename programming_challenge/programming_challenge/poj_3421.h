@@ -12,6 +12,8 @@
 #include <algorithm>
 #include <functional>
 #include <string.h>
+#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 const int INF = 1 << 28;
 typedef long long ll;
@@ -35,64 +37,65 @@ typedef pair<int, int> P;
 	cout<<endl;
 
 
+
 /*
 class bignum{
 public:
-	bignum(int size = 4):len(size){
-	}
-	~bignum(){
-	}
-	int size()const{
-		return len;
-	}
-	//int get(int id)const{
-	//	return num[id];
-	//}
-	friend ostream &operator<<(ostream &output, const bignum &b){
-		bool stu = false;
-		for (int i = int(b.len - 1); i >= 0; --i){
-			if (stu)
-				printf("%09d", b.num[i]);
-			else if (b.num[i] > 0){
-				printf("%d", b.num[i]);
-				stu = true;
-			}
-		}
-		if (stu == false)
-			printf("0");
-		return output;
-	}
-	const bignum& operator+=(const bignum&right){
-		int add = 0;
-		for (int i = 0; i < len; ++i){
-			int tmp = 0;
-			if (i < right.size()){
-				tmp = right.num[i] + num[i] + add;
-			}
-			else{
-				tmp = num[i] + add;
-			}
-			num[i] = tmp%gap;
-			add = tmp / gap;
-		}
-		return *this;
-	}
-	const bignum& operator=(const bignum&right){
-		for (int i = 0; i <len; ++i){
-			num[i] = right.num[i];
-		}
-		return *this;
-	}
-	void set(int a){
-		for (int i = 0; i <len; ++i){
-			num[i] = a%gap;
-			a /= gap;
-		}
-	}
+bignum(int size = 4):len(size){
+}
+~bignum(){
+}
+int size()const{
+return len;
+}
+//int get(int id)const{
+//	return num[id];
+//}
+friend ostream &operator<<(ostream &output, const bignum &b){
+bool stu = false;
+for (int i = int(b.len - 1); i >= 0; --i){
+if (stu)
+printf("%09d", b.num[i]);
+else if (b.num[i] > 0){
+printf("%d", b.num[i]);
+stu = true;
+}
+}
+if (stu == false)
+printf("0");
+return output;
+}
+const bignum& operator+=(const bignum&right){
+int add = 0;
+for (int i = 0; i < len; ++i){
+int tmp = 0;
+if (i < right.size()){
+tmp = right.num[i] + num[i] + add;
+}
+else{
+tmp = num[i] + add;
+}
+num[i] = tmp%gap;
+add = tmp / gap;
+}
+return *this;
+}
+const bignum& operator=(const bignum&right){
+for (int i = 0; i <len; ++i){
+num[i] = right.num[i];
+}
+return *this;
+}
+void set(int a){
+for (int i = 0; i <len; ++i){
+num[i] = a%gap;
+a /= gap;
+}
+}
 private:
-	int  num[4];
-	int len;
-	static const int gap =1000000000;
+int  num[4];
+int len;
+static const int gap =1000000000;
 };
 
 //int gcd(int a,int b){
@@ -157,19 +160,69 @@ private:
 
 #define my_debug
 
+int n;
 
+map<int, int> all;
 
+void get_n(){
+	int tmp = n;
+	rep(i, 2, sqrt(n)+1){
+		while (tmp%i==0){
+			++all[i];
+			tmp /= i;
+		}
+		if (tmp == 1)
+			break;
+	}
+	if (tmp != 1){
+		++all[tmp];
+	}
+}
+
+ll get_num(ll n){
+	ll out = 1;
+	rep(i, 2, n + 1)
+		out *= i;
+	return out;
+}
+
+void get_ans(ll &len,ll &num){
+	if (all.size() == 1){
+		len = all.begin()->second;
+		num = 1;
+		return;
+	}
+	vector<int> cache;
+	len = 0;
+	for (map<int, int>::iterator it = all.begin(); it != all.end(); ++it){
+		cache.push_back(get_num((ll)it->second));
+		len += it->second;
+	}
+	num = get_num(len);
+	rep(i, 0, cache.size()){
+		num /= cache[i];
+	}
+}
 
 void solve(){
-	
+	all.clear();
+	get_n();
+	//cout << n << ':' << endl;
+	//for (auto i = all.begin(); i != all.end();++i){
+	//	cout << i->first << ' ' << i->second << endl;
+	//}
+	ll len = 0, num = 0;
+	get_ans(len, num);
+	pll2(len, num);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-    while (gint() != EOF){
-		
+	//cout << get_num(19) << endl;
+	while (gint(n) != EOF){
+
 		solve();
 	}
 	return 0;

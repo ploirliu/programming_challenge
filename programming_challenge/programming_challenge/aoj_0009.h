@@ -18,11 +18,11 @@ typedef long long ll;
 typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
 #define pint(i) printf("%d\n",(i))
-#define pint2(i,j) printf("%d %d\n",(i),(j))
-#define pint3(i,j,k) printf("%d %d %d\n",(i),(j),(k))
+#define pint2(i,j) printf("%d %d",(i),(j))
+#define pint3(i,j,k) printf("%d %d %d",(i),(j),(k))
 #define pll(i) printf("%lld\n",(i))
-#define pll2(i,j) printf("%lld %lld\n",(i),(j))
-#define pll3(i,j,k) printf("%lld %lld %lld\n",(i),(j),(k))
+#define pll2(i,j) printf("%lld %lld",(i),(j))
+#define pll3(i,j,k) printf("%lld %lld %lld",(i),(j),(k))
 #define gint(i) scanf("%d",&(i))
 #define gint2(i,j) scanf("%d %d",&(i),&(j))
 #define gint3(i,j,k) scanf("%d %d %d",&(i),&(j),&(k))
@@ -35,64 +35,65 @@ typedef pair<int, int> P;
 	cout<<endl;
 
 
+
 /*
 class bignum{
 public:
-	bignum(int size = 4):len(size){
-	}
-	~bignum(){
-	}
-	int size()const{
-		return len;
-	}
-	//int get(int id)const{
-	//	return num[id];
-	//}
-	friend ostream &operator<<(ostream &output, const bignum &b){
-		bool stu = false;
-		for (int i = int(b.len - 1); i >= 0; --i){
-			if (stu)
-				printf("%09d", b.num[i]);
-			else if (b.num[i] > 0){
-				printf("%d", b.num[i]);
-				stu = true;
-			}
-		}
-		if (stu == false)
-			printf("0");
-		return output;
-	}
-	const bignum& operator+=(const bignum&right){
-		int add = 0;
-		for (int i = 0; i < len; ++i){
-			int tmp = 0;
-			if (i < right.size()){
-				tmp = right.num[i] + num[i] + add;
-			}
-			else{
-				tmp = num[i] + add;
-			}
-			num[i] = tmp%gap;
-			add = tmp / gap;
-		}
-		return *this;
-	}
-	const bignum& operator=(const bignum&right){
-		for (int i = 0; i <len; ++i){
-			num[i] = right.num[i];
-		}
-		return *this;
-	}
-	void set(int a){
-		for (int i = 0; i <len; ++i){
-			num[i] = a%gap;
-			a /= gap;
-		}
-	}
+bignum(int size = 4):len(size){
+}
+~bignum(){
+}
+int size()const{
+return len;
+}
+//int get(int id)const{
+//	return num[id];
+//}
+friend ostream &operator<<(ostream &output, const bignum &b){
+bool stu = false;
+for (int i = int(b.len - 1); i >= 0; --i){
+if (stu)
+printf("%09d", b.num[i]);
+else if (b.num[i] > 0){
+printf("%d", b.num[i]);
+stu = true;
+}
+}
+if (stu == false)
+printf("0");
+return output;
+}
+const bignum& operator+=(const bignum&right){
+int add = 0;
+for (int i = 0; i < len; ++i){
+int tmp = 0;
+if (i < right.size()){
+tmp = right.num[i] + num[i] + add;
+}
+else{
+tmp = num[i] + add;
+}
+num[i] = tmp%gap;
+add = tmp / gap;
+}
+return *this;
+}
+const bignum& operator=(const bignum&right){
+for (int i = 0; i <len; ++i){
+num[i] = right.num[i];
+}
+return *this;
+}
+void set(int a){
+for (int i = 0; i <len; ++i){
+num[i] = a%gap;
+a /= gap;
+}
+}
 private:
-	int  num[4];
-	int len;
-	static const int gap =1000000000;
+int  num[4];
+int len;
+static const int gap =1000000000;
 };
 
 //int gcd(int a,int b){
@@ -155,21 +156,42 @@ private:
 
 */
 
-#define my_debug
+//#define my_debug
 
 
 
-
+int n;
+const int len = 1000005;
+bool stu[len];
+void setup(){
+	init(stu, 1);
+	stu[0] = stu[1] = false;
+	rep(i, 2, len){
+		if (stu[i]){
+			int j = i +i;
+			while (j < len){
+				stu[j] = false;
+				j += i;
+			}
+		}
+	}
+}
 void solve(){
-	
+	int out = 0;
+	rep(i, 0, n+1){
+		if (stu[i])
+			++out;
+	}
+	pint(out);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-    while (gint() != EOF){
-		
+	setup();
+	while (gint(n) != EOF){
+
 		solve();
 	}
 	return 0;

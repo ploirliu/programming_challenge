@@ -13,8 +13,8 @@
 #include <functional>
 #include <string.h>
 using namespace std;
+const int INF = 1 << 28;
 typedef long long ll;
-const ll INF = (ll)1 << 32;
 typedef pair<int, int> P;
 #define rep(i,start,end) for(int i=(start);i<(end);++i)
 #define pint(i) printf("%d\n",(i))
@@ -25,11 +25,11 @@ typedef pair<int, int> P;
 #define gint3(i,j,k) scanf("%d %d %d",&(i),&(j),&(k))
 #define init(tar,val) memset((tar),(val),sizeof((tar)))
 #define show(tar,len) for(int i=0;i<(len);++i) \
-	cout << tar[i] << ' '; \
-	cout << endl;
+	cout<<tar[i]<<' ';\
+	cout<<endl;
 
 
-
+/*
 
 class bignum{
 public:
@@ -90,6 +90,25 @@ private:
 	static const int gap = 1000000000;
 };
 
+//int gcd(int a,int b){
+//	if(b==0)
+//		return a;
+//	return gcd(b,a%b);
+//}
+//
+////a*x+b*y=gcd(a,b);
+//int extgcd(int a,int b,int &x,int &y){
+//	int d=a;
+//	if(b!=0){
+//		d=extgcd(b,a%b,y,x);
+//		y-=(a/b)*x;
+//	}
+//	else{
+//		x=1,y=0;
+//	}
+//	return d;
+//}
+
 
 //inline int id(int i){
 //	return i & 1;
@@ -129,61 +148,30 @@ private:
 //	}
 //}
 
-#define my_debu
-const int MAX_N = 2005;
-const int MAX_M = 10005;
 
-int n, m;
-typedef pair<ll, P> ROAD;
-ll len[MAX_N];
-bool stu[MAX_N];
-ll r[MAX_N][MAX_N];
-void solve(){
-	//sort(r, r + m + m);
-	fill(len, len + n + 1, INF);
-	init(stu, 0);
-	len[1] = 0;
-	ll out = -1;
-	while (true){
-		ll tmp = INF, tmpid = -1;
-		rep(i, 1, n+1){
-			if (stu[i] == false && len[i] < tmp){
-				tmp = len[i];
-				tmpid = i;
-			}
-		}
-		if (tmpid == -1)
-			break;
-		stu[tmpid] = true;
-		out = max(out, tmp);
-		rep(i, 1, n + 1){
-			len[i] = min(len[i],r[tmpid][i]);
-		}
-	}
-	pint(out);
+*/
+#define my_debug
+
+
+
+ll gcd(ll a, ll b){
+	if (b == 0)
+		return a;
+	return gcd(b, a%b);
 }
 
-void myinit(){
-	rep(i, 1, n+1){
-		rep(j, 1, n+1){
-			r[i][j] = i == j ? (ll)0 : (ll)INF;
-		}
-	}
+ll lcm(ll a, ll b, ll gcd){
+	return a / gcd*b;
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
 #endif
-	while (gint2(n,m) != EOF){
-		myinit();
-		rep(i, 0, m){
-			int a, b;
-			ll c;
-			scanf("%d %d %lld", &a, &b, &c);
-			r[a][b] = r[b][a] =min(c,min(r[a][b],r[b][a]));
-		}
-		solve();
+	ll a, b;
+	while (scanf("%lld %lld",&a,&b)!=EOF){
+		ll tmp = gcd(a, b);
+		printf("%lld %lld\n", tmp, lcm(a, b, tmp));
 	}
 	return 0;
 }

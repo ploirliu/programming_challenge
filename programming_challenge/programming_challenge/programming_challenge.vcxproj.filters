@@ -91,11 +91,21 @@
     <ClInclude Include="poj_2377.h" />
     <ClInclude Include="aoj_2224.h" />
     <ClInclude Include="poj_2395.h" />
+    <ClInclude Include="aoj_0005.h" />
+    <ClInclude Include="poj_2429.h" />
+    <ClInclude Include="poj_1930.h" />
+    <ClInclude Include="aoj_0009.h" />
+    <ClInclude Include="poj_3126.h" />
+    <ClInclude Include="poj_3421.h" />
+    <ClInclude Include="poj_3641.h" />
+    <ClInclude Include="test_prime.h" />
+    <ClInclude Include="p_1995.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2.7.2.h" />
     <None Include="a.in" />
     <None Include="a.out" />
+    <None Include="poj_3292.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="p_2.1.11.txt" />
