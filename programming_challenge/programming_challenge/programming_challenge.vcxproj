@@ -133,6 +133,7 @@
     <ClInclude Include="poj_2377.h" />
     <ClInclude Include="poj_2395.h" />
     <ClInclude Include="poj_2429.h" />
+    <ClInclude Include="poj_3104.h" />
     <ClInclude Include="poj_3126.h" />
     <ClInclude Include="poj_3421.h" />
     <ClInclude Include="poj_3641.h" />
