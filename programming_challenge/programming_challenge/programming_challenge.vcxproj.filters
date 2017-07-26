@@ -108,6 +108,7 @@
     <ClInclude Include="poj_3104.h" />
     <ClInclude Include="poj_2976.h" />
     <ClInclude Include="poj_3111.h" />
+    <ClInclude Include="poj_2010.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2.7.2.h" />
