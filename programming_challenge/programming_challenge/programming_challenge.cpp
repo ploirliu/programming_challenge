@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
-#include "test.h"
+#include "poj_2010.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {

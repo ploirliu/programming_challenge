@@ -31,8 +31,8 @@ typedef pair<int, int> P;
 #define gll3(i,j,k) scanf("%lld %lld %lld",&(i),&(j),&(k))
 #define init(tar,val) memset((tar),(val),sizeof((tar)))
 #define show(tar,len) for(int i=0;i<(len);++i) \
-	cout<<tar[i]<<' ';\
-	cout<<endl;
+	cout << tar[i] << ' '; \
+	cout << endl;
 
 
 /*
@@ -156,62 +156,61 @@ static const int gap =1000000000;
 */
 
 #define my_debug
+
+
 const int N = 100005;
-int s[N];
 P all[N];
 int n, c, f;
-int gap;
-bool decide(int id){
-	int stu1 = 0, stu2 = 0, stu3 = 0;
-	ll sum = f;
-	rep(i, 0, c){
-		if (stu1+stu2+stu3<n){
-			if (all[i].second < s[id] && stu1<gap){
-				sum -= all[i].first;
-				++stu1;
-			}
-			else if (all[i].second == s[id] ){
-				sum -= all[i].first;
-				++stu3;
-			}
-			else if (all[i].second>s[id] && stu2<gap){
-				sum -= all[i].first;
-				++stu2;
-			}
-		}
-		else
-			break;
-		if (sum < 0)
-			break;
-	}
-	if (stu1 || stu2 || stu3 || sum < 0)
-		return false;
-	return true;
-}
-
-
+ll s[N], e[N];
 void solve(){
 	sort(all, all + c);
-	sort(s, s + c);
-	int lb = 0, ub = c;
-	while (ub - lb > 1){
-		int mid = (lb + ub) / 2;
-		if (decide(mid))
-			lb = mid;
-		else
-			ub = mid;
-		//cout << lb << ' ' << ub << endl;
+	priority_queue<int> p;
+	init(s, -1);
+	init(e, -1);
+	ll sum = 0;
+	rep(i, 0, c){
+		if (p.size() < (n / 2)){
+			p.push(all[i].second);
+			sum += (ll)all[i].second;
+		}
+		else{
+			s[i] = sum;
+			if (!p.empty() && all[i].second < p.top()){
+				sum += (ll)((ll)all[i].second - (ll)p.top());
+				p.pop(); p.push(all[i].second);
+			}
+		}
 	}
-	if (decide(lb))
-		pint(s[lb]);
-	else
-		pint(-1);
+	while (!p.empty())
+		p.pop();
+	sum = 0;
+	for (int i = c - 1; i >= 0; --i){
+		if (p.size() < (n / 2)){
+			p.push(all[i].second);
+			sum += (ll)all[i].second;
+		}
+		else{
+			e[i] = sum;
+			if (!p.empty() && all[i].second < p.top()){
+				sum += (ll)((ll)all[i].second - (ll)p.top());
+				p.pop(); p.push(all[i].second);
+			}
+		}
+	}
+	int out = -1;
+	rep(i, 0, c){
+		if (s[i] >= 0 && e[i] >= 0){
+			if ((ll)s[i] + (ll)e[i] + (ll)all[i].second<=(ll)f){
+				out = all[i].first;
+			}
+		}
+	}
+	pint(out);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
-	//freopen("a.out", "w", stdout);
 #endif
 	while (gint3(n, c, f) != EOF){
 		gap = n / 2;
@@ -223,3 +222,4 @@ int main(){
 	}
 	return 0;
 }
+
