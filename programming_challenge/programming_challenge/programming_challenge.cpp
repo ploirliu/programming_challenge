@@ -2,11 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "poj_3111.h"
+#include <iostream>
+using namespace std;
+#include "test.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	main();
+	//main();
 	return 0;
 }
 

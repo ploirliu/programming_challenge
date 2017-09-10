@@ -38,61 +38,61 @@ typedef pair<int, int> P;
 /*
 class bignum{
 public:
-	bignum(int size = 4):len(size){
-	}
-	~bignum(){
-	}
-	int size()const{
-		return len;
-	}
-	//int get(int id)const{
-	//	return num[id];
-	//}
-	friend ostream &operator<<(ostream &output, const bignum &b){
-		bool stu = false;
-		for (int i = int(b.len - 1); i >= 0; --i){
-			if (stu)
-				printf("%09d", b.num[i]);
-			else if (b.num[i] > 0){
-				printf("%d", b.num[i]);
-				stu = true;
-			}
-		}
-		if (stu == false)
-			printf("0");
-		return output;
-	}
-	const bignum& operator+=(const bignum&right){
-		int add = 0;
-		for (int i = 0; i < len; ++i){
-			int tmp = 0;
-			if (i < right.size()){
-				tmp = right.num[i] + num[i] + add;
-			}
-			else{
-				tmp = num[i] + add;
-			}
-			num[i] = tmp%gap;
-			add = tmp / gap;
-		}
-		return *this;
-	}
-	const bignum& operator=(const bignum&right){
-		for (int i = 0; i <len; ++i){
-			num[i] = right.num[i];
-		}
-		return *this;
-	}
-	void set(int a){
-		for (int i = 0; i <len; ++i){
-			num[i] = a%gap;
-			a /= gap;
-		}
-	}
+bignum(int size = 4):len(size){
+}
+~bignum(){
+}
+int size()const{
+return len;
+}
+//int get(int id)const{
+//	return num[id];
+//}
+friend ostream &operator<<(ostream &output, const bignum &b){
+bool stu = false;
+for (int i = int(b.len - 1); i >= 0; --i){
+if (stu)
+printf("%09d", b.num[i]);
+else if (b.num[i] > 0){
+printf("%d", b.num[i]);
+stu = true;
+}
+}
+if (stu == false)
+printf("0");
+return output;
+}
+const bignum& operator+=(const bignum&right){
+int add = 0;
+for (int i = 0; i < len; ++i){
+int tmp = 0;
+if (i < right.size()){
+tmp = right.num[i] + num[i] + add;
+}
+else{
+tmp = num[i] + add;
+}
+num[i] = tmp%gap;
+add = tmp / gap;
+}
+return *this;
+}
+const bignum& operator=(const bignum&right){
+for (int i = 0; i <len; ++i){
+num[i] = right.num[i];
+}
+return *this;
+}
+void set(int a){
+for (int i = 0; i <len; ++i){
+num[i] = a%gap;
+a /= gap;
+}
+}
 private:
-	int  num[4];
-	int len;
-	static const int gap =1000000000;
+int  num[4];
+int len;
+static const int gap =1000000000;
 };
 
 //int gcd(int a,int b){
@@ -157,20 +157,48 @@ private:
 
 #define my_debug
 
-
-
+int n;
+const int N = 100005;
+int all[N];
+const int l_INF = (ll)1 << 30;
+int gap;
+bool c(int v){
+	int stu = 0;
+	rep(i, 0, n){
+		stu += (n-(lower_bound(all, all + n, all[i] + v) - all));
+	}
+	if (stu > gap)
+		return true;
+	return false;
+}
 
 void solve(){
-	
+	gap = 0;
+	if (n & 1)
+		gap = ((ll)((ll)n - (ll)1) / (ll)2)*(ll)n;
+	else
+		gap = ((ll)n / (ll)2)*((ll)n - (ll)1);
+	gap = gap / 2;
+	sort(all, all + n);
+	int lb = 0, ub = l_INF;
+	while (ub - lb > 1){
+		int mid = ((ll)lb + (ll)ub) / (ll)2;
+		if (c(mid))
+			lb = mid;
+		else
+			ub = mid;
+		//cout << lb << ' ' << ub << endl;
+	}
+	pint(lb);
 }
 
 int main(){
 #ifdef my_debug
 	freopen("a.in", "r", stdin);
-	//freopen("a.out", "w", stdout);
 #endif
-    while (gint() != EOF){
-		
+	while (gint(n) != EOF){
+		rep(i, 0, n)
+			gint(all[i]);
 		solve();
 	}
 	return 0;
