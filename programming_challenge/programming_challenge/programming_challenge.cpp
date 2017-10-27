@@ -4,11 +4,11 @@
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
-#include "poj_2010.h"
+#include "poj_3662.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//main();
+	main();
 	return 0;
 }
 
